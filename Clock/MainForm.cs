@@ -15,8 +15,10 @@ namespace Clock
         public MainForm()
         {
             InitializeComponent();
+            int screenWidth_start = Screen.PrimaryScreen.Bounds.Width;
+            int screenHeight_start = Screen.PrimaryScreen.Bounds.Height;
+            this.Location = new Point(screenWidth_start - 550, screenHeight_start - 1050);
         }
-
         private void timer_Tick(object sender, EventArgs e)
         {
             labelTime.Text = DateTime.Now.ToString
@@ -26,6 +28,40 @@ namespace Clock
                 );
             if (checkBoxShowDate.Checked)
                 labelTime.Text += $"\n{DateTime.Now.ToString("yyyy.mm.dd")}";
+            if (checkBoxShowWeekday.Checked)
+            {
+                DateTime date = DateTime.Now;
+                int Number_day = (int)date.DayOfWeek;
+                if (Number_day == 0)
+                {
+                    labelTime.Text += $"\n{("Воскресенье")}";
+                }
+                if (Number_day == 1)
+                {
+                    labelTime.Text += $"\n{("Понедельник")}";
+                }
+                if (Number_day == 2)
+                {
+                    labelTime.Text += $"\n{("Вторник")}";
+                }
+                if (Number_day == 3)
+                {
+                    labelTime.Text += $"\n{("Среда")}";
+                }
+                if (Number_day == 4)
+                {
+                    labelTime.Text += $"\n{("Четверг")}";
+                }
+                if (Number_day == 5)
+                {
+                    labelTime.Text += $"\n{("Пятница")}";
+                }
+                if (Number_day == 6)
+                {
+                    labelTime.Text += $"\n{("Суббота")}";
+                }
+            }
+
         }
     }
 }
