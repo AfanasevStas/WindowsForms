@@ -63,7 +63,7 @@ namespace Clock
                     labelTime.Text += $"\n{("Суббота")}";
                 }
             }
-
+            notifyIcon.Text = labelTime.Text;
         }
         void SetVisibility(bool visible)
         {
