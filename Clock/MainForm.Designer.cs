@@ -77,10 +77,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(517, 442);
+            this.ClientSize = new System.Drawing.Size(324, 311);
             this.Controls.Add(this.checkBoxShowWeekday);
             this.Controls.Add(this.checkBoxShowDate);
             this.Controls.Add(this.labelTime);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

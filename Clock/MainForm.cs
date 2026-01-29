@@ -17,7 +17,7 @@ namespace Clock
             InitializeComponent();
             int screenWidth_start = Screen.PrimaryScreen.Bounds.Width;
             int screenHeight_start = Screen.PrimaryScreen.Bounds.Height;
-            int screenWidth_finish = (screenWidth_start / 100) * 70;
+            int screenWidth_finish = (screenWidth_start / 100) * 80;
             int screenHeight_finish = (screenHeight_start / 100) * 5;
             this.Location = new Point(screenWidth_finish, screenHeight_finish);
         }
