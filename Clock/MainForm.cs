@@ -83,5 +83,54 @@ namespace Clock
         {
             SetVisibility(true);
         }
+
+        private void tsmiTopmost_Click(object sender, EventArgs e)
+        {
+            if(tsmiTopmost.Checked)
+            this.TopMost = true;
+            else 
+            this.TopMost = false;
+        }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if(this.TopMost == false)
+            this.TopMost = true;
+            else
+            this.TopMost = false;
+        }
+
+        private void tsmiShowDate_Click(object sender, EventArgs e)
+        {
+            if(checkBoxShowDate.Checked == false)
+            checkBoxShowDate.Checked = true;
+            else
+            checkBoxShowDate.Checked = false;
+        }
+
+        private void tsmiShowWeekday_Click(object sender, EventArgs e)
+        {
+            if (checkBoxShowWeekday.Checked == false)
+                checkBoxShowWeekday.Checked = true;
+            else
+                checkBoxShowWeekday.Checked = false;
+        }
+
+        private void tsmiExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void tsmiForegroundColor_Click(object sender, EventArgs e)
+        {
+            labelTime.BackColor = SystemColors.Desktop;
+            labelTime.ForeColor = SystemColors.Highlight;
+        }
+
+        private void tsmiBackgroundColor_Click(object sender, EventArgs e)
+        {
+            labelTime.BackColor = SystemColors.Highlight;
+            labelTime.ForeColor = SystemColors.Desktop;
+        }
     }
 }
