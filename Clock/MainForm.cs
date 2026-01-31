@@ -12,6 +12,8 @@ namespace Clock
 {
     public partial class MainForm : Form
     {
+        ColorDialog backgroundDialog;
+        ColorDialog foregroundDialog;
         public MainForm()
         {
             InitializeComponent();
@@ -21,6 +23,8 @@ namespace Clock
             int screenHeight_finish = (screenHeight_start / 100) * 5;
             this.Location = new Point(screenWidth_finish, screenHeight_finish);
             tsmiShowControls.Checked = true;
+            backgroundDialog = new ColorDialog();
+            foregroundDialog = new ColorDialog();
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -115,5 +119,20 @@ namespace Clock
 
         private void checkBoxShowWeekday_CheckedChanged(object sender, EventArgs e) =>
             tsmiShowWeekday.Checked = (sender as CheckBox).Checked;
+
+        private void tsmiBackgroundColor_Click(object sender, EventArgs e)
+        {
+            DialogResult result = backgroundDialog.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                labelTime.BackColor = backgroundDialog.Color; 
+            }
+        }
+
+        private void tsmiForegroundColor_Click(object sender, EventArgs e)
+        {
+            if(foregroundDialog.ShowDialog() == DialogResult.OK)
+                labelTime.ForeColor = foregroundDialog.Color;
+        }
     }
 }
