@@ -20,7 +20,9 @@ namespace Clock
             int screenWidth_finish = (screenWidth_start / 100) * 80;
             int screenHeight_finish = (screenHeight_start / 100) * 5;
             this.Location = new Point(screenWidth_finish, screenHeight_finish);
+            tsmiShowControls.Checked = true;
         }
+
         private void timer_Tick(object sender, EventArgs e)
         {
             labelTime.Text = DateTime.Now.ToString
@@ -76,12 +78,42 @@ namespace Clock
         }
         private void buttonHideControls_Click(object sender, EventArgs e)
         {
-            SetVisibility(false);
+            tsmiShowControls.Checked = false;
         }
 
         private void labelTime_DoubleClick(object sender, EventArgs e)
         {
-            SetVisibility(true);
+            tsmiShowControls.Checked = true;
         }
+
+        private void tsmiTopmost_CheckedChanged(object sender, EventArgs e) =>        
+            //this.TopMost = tsmiTopmost.Checked;
+            this.TopMost = (sender as ToolStripMenuItem).Checked;
+
+        private void tsmiShowControls_CheckedChanged(object sender, EventArgs e) =>
+            SetVisibility(tsmiShowControls.Checked);
+
+        private void tsmiExit_Click(object sender, EventArgs e) => Close();
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if(!this.TopMost)
+            {
+                this.TopMost = true;
+                this.TopMost = false;
+            }
+        }
+
+        private void tsmiShowDate_CheckedChanged(object sender, EventArgs e) =>
+            checkBoxShowDate.Checked = (sender as ToolStripMenuItem).Checked;
+
+        private void tsmiShowWeekday_CheckedChanged(object sender, EventArgs e) =>
+            checkBoxShowWeekday.Checked = (sender as ToolStripMenuItem).Checked;
+
+        private void checkBoxShowDate_CheckedChanged(object sender, EventArgs e) =>
+            tsmiShowDate.Checked = (sender as CheckBox).Checked;
+
+        private void checkBoxShowWeekday_CheckedChanged(object sender, EventArgs e) =>
+            tsmiShowWeekday.Checked = (sender as CheckBox).Checked;
     }
 }
