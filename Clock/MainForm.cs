@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Clock
 {
@@ -133,6 +135,26 @@ namespace Clock
         {
             if(foregroundDialog.ShowDialog() == DialogResult.OK)
                 labelTime.ForeColor = foregroundDialog.Color;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            PrivateFontCollection pfs = new PrivateFontCollection();
+            pfs.AddFontFile("C:\\Users\\Admin\\source\\repos\\WindowsForms\\Clock\\Fonts\\digital-7 (mono).ttf");
+            labelTime.Font = new Font(pfs.Families[0], 32, FontStyle.Regular);
+        }
+
+        private void tsmiAutorn_Click(object sender, EventArgs e)
+        {
+            
+        }
+        private void labelTime_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (tsmiShowControls.Checked == false)
+            {
+                if (e.Button == MouseButtons.Left)
+                    this.Location = new Point(Cursor.Position.X - 130, Cursor.Position.Y - 35);
+            }
         }
     }
 }
