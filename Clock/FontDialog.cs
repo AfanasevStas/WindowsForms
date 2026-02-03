@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Drawing.Text;
 
 namespace Clock
 {
     public partial class FontDialog : Form
     {
         MainForm parent;
+        public Font Font { get; private set; }
         public FontDialog(MainForm parent)
         {
             InitializeComponent();
@@ -66,6 +68,26 @@ namespace Clock
                    this.parent.Location.Y + 100
                 );
             LoadFonts();
+        }
+
+        private void buttonOK_Click(object sender, EventArgs e)
+        {
+            this.Font = labelExemple.Font;
+        }
+        void ApplyFontExample()
+        {
+            PrivateFontCollection pfc = new PrivateFontCollection();
+            pfc.AddFontFile((comboBoxFonts).SelectedItem.ToString());
+            labelExemple.Font = new Font(pfc.Families[0], (float)numericUpDownFontSize.Value);
+        }
+        private void comboBoxFonts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplyFontExample();
+        }
+
+        private void numericUpDownFontSize_ValueChanged(object sender, EventArgs e)
+        {
+            ApplyFontExample();
         }
     }
 }
