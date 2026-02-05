@@ -191,6 +191,7 @@
             this.tsmiAutorn.Name = "tsmiAutorn";
             this.tsmiAutorn.Size = new System.Drawing.Size(180, 22);
             this.tsmiAutorn.Text = "Autorn";
+            this.tsmiAutorn.CheckedChanged += new System.EventHandler(this.tsmiAutorn_CheckedChanged);
             // 
             // toolStripSeparator5
             // 
