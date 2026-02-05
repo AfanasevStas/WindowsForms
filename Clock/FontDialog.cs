@@ -19,6 +19,7 @@ namespace Clock
         MainForm parent;
         Dictionary<string,string> fonts = new Dictionary<string,string>();
         public Font Font { get; private set; }
+        public string FontFile { get; set; }
         public FontDialog(MainForm parent)
         {
             pfc = null;
@@ -80,6 +81,7 @@ namespace Clock
         private void buttonOK_Click(object sender, EventArgs e)
         {
             this.Font = labelExemple.Font;
+            this.FontFile = fonts[comboBoxFonts.SelectedItem.ToString()];
         }
         void ApplyFontExample()
         {

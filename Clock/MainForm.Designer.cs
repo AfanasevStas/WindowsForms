@@ -89,7 +89,7 @@
             this.toolStripSeparator5,
             this.tsmiExit});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(181, 279);
+            this.contextMenuStrip.Size = new System.Drawing.Size(161, 257);
             // 
             // toolStripTextBox1
             // 
@@ -269,6 +269,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Clock PV522";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.contextMenuStrip.ResumeLayout(false);
             this.contextMenuStrip.PerformLayout();
             this.ResumeLayout(false);
