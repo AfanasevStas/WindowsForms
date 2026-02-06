@@ -15,6 +15,8 @@ namespace Clock
 {
     public partial class FontDialog : Form
     {
+        public decimal value_1 = 0;
+        public bool check = true;
         PrivateFontCollection pfc;
         MainForm parent;
         Dictionary<string,string> fonts = new Dictionary<string,string>();
@@ -27,8 +29,35 @@ namespace Clock
             this.StartPosition = FormStartPosition.Manual;
             this.parent = parent;
             LoadFonts();
+            LoadSettings_2();
         }
+        public void LoadSettings_2()
+        {
 
+            Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
+            try
+            {
+                StreamReader reader = new StreamReader("Settings.ini");
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+                this.FontFile = reader.ReadLine();
+                comboBoxFonts.Font = ApplyFontExample(FontFile);
+                //comboBoxFonts.Font.Size = 8.25;
+                ApplyFontExample(FontFile);
+                value_1 = decimal.Parse(reader.ReadLine());
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message);
+            }
+            this.numericUpDownFontSize.Value = value_1;
+        }
         void LoadFonts()
         {
             //AllocConsole();
@@ -98,7 +127,15 @@ namespace Clock
 
         private void numericUpDownFontSize_ValueChanged(object sender, EventArgs e)
         {
-            ApplyFontExample(fonts[comboBoxFonts.SelectedItem.ToString()]);
+            //LoadFonts(Directory.GetCurrentDirectory(), "*.ttf");
+            //LoadFonts(Directory.GetCurrentDirectory(), "*.otf");
+            //Traverse(Directory.GetCurrentDirectory());
+            if(check == false)
+            {
+                ApplyFontExample(fonts[comboBoxFonts.SelectedItem.ToString()]);
+            }
+            value_1 = numericUpDownFontSize.Value;
+            check = false;
         }
     }
 }

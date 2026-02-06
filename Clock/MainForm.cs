@@ -18,6 +18,8 @@ namespace Clock
         ColorDialog backgroundDialog;
         ColorDialog foregroundDialog;
         FontDialog fontDialog;
+        public decimal value_2 = 0;
+        public int Selected_Index = 0;
         public MainForm()
         {
             InitializeComponent();
@@ -45,6 +47,7 @@ namespace Clock
             writer.WriteLine(labelTime.BackColor.ToArgb());
             writer.WriteLine(labelTime.ForeColor.ToArgb());
             writer.WriteLine(fontDialog.FontFile);
+            writer.WriteLine(fontDialog.value_1);
             writer.Close();
             Process.Start("notepad",filename);
         }
@@ -64,6 +67,7 @@ namespace Clock
                 //fontDialog = new FontDialog(this);
                 fontDialog.FontFile = reader.ReadLine();
                 labelTime.Font = fontDialog.ApplyFontExample(fontDialog.FontFile);
+                //labelTime.Font.Size = decimal.Parse(reader.ReadLine());
                 reader.Close();
             }
             catch (Exception ex)
