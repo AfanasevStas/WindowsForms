@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using Microsoft.Win32;
+using System.Runtime.InteropServices;
 
 namespace Clock
 {
@@ -18,6 +19,7 @@ namespace Clock
         ColorDialog backgroundDialog;
         ColorDialog foregroundDialog;
         FontDialog fontDialog;
+        bool mouseDone = false;
         public MainForm()
         {
             InitializeComponent();
@@ -32,6 +34,10 @@ namespace Clock
             //fontDialog = new FontDialog(this);
             LoadSettings();
         }
+        [DllImport("kernel32.dll")]
+        public static extern bool AllocConsole();
+        [DllImport("kernel32.dll")]
+        public static extern void FreeConsole();
         void SaveSettings()
         {
             Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
@@ -208,6 +214,17 @@ namespace Clock
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveSettings();
+        }
+
+        private void labelTime_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(mouseDone) this.Location = e.Location;
+            Console.WriteLine($"MouseMove: Window:{this.Location.X}{this.Location.Y}; Mouse: {e.X}x{e.Y}; MouseLocation: {e.Location}");
+        }
+
+        private void labelTime_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left) mouseDone = true;
         }
     }
 }
