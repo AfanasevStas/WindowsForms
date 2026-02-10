@@ -41,6 +41,7 @@ namespace Clock
         public static extern void FreeConsole();
         void SaveSettings()
         {
+
             Directory.SetCurrentDirectory($"{Application.ExecutablePath}\\..\\..\\..");
             string filename = "Settings.ini";
             StreamWriter writer = new StreamWriter("Settings.ini");
