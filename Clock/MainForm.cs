@@ -19,6 +19,7 @@ namespace Clock
         ColorDialog backgroundDialog;
         ColorDialog foregroundDialog;
         FontDialog fontDialog;
+        Point mouseLocation;
         bool mouseDone = false;
         public MainForm()
         {
@@ -218,13 +219,27 @@ namespace Clock
 
         private void labelTime_MouseMove(object sender, MouseEventArgs e)
         {
-            if(mouseDone) this.Location = e.Location;
-            Console.WriteLine($"MouseMove: Window:{this.Location.X}{this.Location.Y}; Mouse: {e.X}x{e.Y}; MouseLocation: {e.Location}");
+            //if(mouseDone) this.Location = e.Location;
+            //Console.WriteLine($"MouseMove: Window:{this.Location.X}{this.Location.Y}; Mouse: {e.X}x{e.Y}; MouseLocation: {e.Location}");
+            if (mouseDone) this.Location = new Point
+                (
+                   Cursor.Position.X - mouseLocation.X,
+                   Cursor.Position.Y - mouseLocation.Y
+                );
         }
 
         private void labelTime_MouseDown(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left) mouseDone = true;
+            if (e.Button == MouseButtons.Left)
+            {
+                mouseDone = true;
+                mouseLocation = new Point(e.Location.X, e.Location.Y);
+            }
+        }
+
+        private void labelTime_MouseUp(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left) mouseDone = false;
         }
     }
 }
